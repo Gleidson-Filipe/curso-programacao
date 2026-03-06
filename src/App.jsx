@@ -8,24 +8,21 @@ import Footer from "./components/Footer";
 
 export default function App() {
   return (
-    <div className="relative min-h-screen" data-oid="m.jeteq">
+    <div className="relative" data-oid="_8yn3wy">
       <div
         className="fixed inset-0 pointer-events-none bg-grid-pattern bg-grid opacity-50 z-[-1]"
-        data-oid=".6vni0o"
+        data-oid="-sowgjb"
       ></div>
 
-      <div
-        className="relative flex min-h-screen w-full flex-col"
-        data-oid="vl1dckd"
-      >
-        <Navbar data-oid="ag13kc3" />
-        <main className="flex-1 flex flex-col" data-oid="5v1y1u:">
-          <Hero data-oid="nkrhe:c" />
-          <Features data-oid="190f6:a" />
-          <Philosophy data-oid="3.vtru_" />
-          <Protocol data-oid=".q4m3w_" />
+      <div className="relative flex w-full flex-col" data-oid="ux506c-">
+        <Navbar data-oid="mujie_u" />
+        <main className="flex flex-col" data-oid="yftu95i">
+          <Hero data-oid="1-ygcr0" />
+          <Features data-oid=".0rass7" />
+          <Philosophy data-oid="lx3..sq" />
+          <Protocol data-oid="9gln1ua" />
         </main>
-        <Footer data-oid="a9frxug" />
+        <Footer data-oid="-a6g9qe" />
       </div>
     </div>
   );
