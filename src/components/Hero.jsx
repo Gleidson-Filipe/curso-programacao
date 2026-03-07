@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 export default function Hero() {
@@ -22,28 +22,50 @@ export default function Hero() {
   return (
     <section
       ref={container}
-      className="relative pt-32 md:pt-48 pb-20 md:pb-32 px-6 hero-gradient flex items-center w-full z-10"
-      data-oid="8j6gsdn"
+      className="relative pt-32 md:pt-48 pb-20 md:pb-32 px-6 hero-gradient flex items-center w-full z-10 overflow-hidden"
+      data-oid="v-lbsd5"
     >
+      {/* Background glows */}
+      <div className="absolute inset-0 pointer-events-none" data-oid="gmq.a:6">
+        <div
+          className="absolute top-1/3 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(201,167,74,0.06) 0%, transparent 65%)",
+            filter: "blur(80px)",
+          }}
+          data-oid="r:3.4ef"
+        />
+
+        <div
+          className="absolute top-1/2 right-0 translate-x-1/4 w-[500px] h-[500px] rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(123,97,255,0.05) 0%, transparent 65%)",
+            filter: "blur(80px)",
+          }}
+          data-oid="dhhvt30"
+        />
+      </div>
       <div
         className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-24 items-center"
-        data-oid="w4k_28z"
+        data-oid="3_vielj"
       >
         <div
           className="flex flex-col items-start text-left z-10"
-          data-oid="v5u3n0_"
+          data-oid="sr32.ir"
         >
           <h1
             className="hero-anim font-display font-bold text-4xl md:text-6xl lg:text-5xl xl:text-6xl text-slate-100 leading-[1.1] mb-8 tracking-tight"
-            data-oid="mouqw7n"
+            data-oid="etq_7ym"
           >
-            <span data-oid="3rbs_qj">A vontade de aprender</span>
-            <br data-oid="x.e:7p7" />
-            <span data-oid="szm21l0">encontra a</span>
-            <br data-oid="6oaivsa" />
+            <span data-oid="sppcue3">A vontade de aprender</span>
+            <br data-oid="jjoqkkw" />
+            <span data-oid="e39lttg">encontra a</span>
+            <br data-oid="cz7qh:j" />
             <span
               className="text-primary font-mono italic text-3xl md:text-5xl lg:text-4xl xl:text-5xl font-normal block mt-2 tracking-normal break-words"
-              data-oid="qxbu.mu"
+              data-oid="wyutt:s"
             >
               {"<precisão_do_código/>"}
             </span>
@@ -51,7 +73,7 @@ export default function Hero() {
 
           <p
             className="hero-anim text-base md:text-lg text-slate-400 max-w-xl mb-10 font-mono leading-relaxed"
-            data-oid="f_tqhp:"
+            data-oid="9gnsg6v"
           >
             // Aprenda do zero através de projetos práticos com uma metodologia
             de elite desenhada para o mercado internacional.
@@ -59,53 +81,53 @@ export default function Hero() {
 
           <div
             className="hero-anim flex flex-wrap items-center gap-x-6 gap-y-4 mb-12 text-xs md:text-sm font-mono text-slate-300"
-            data-oid="1ksrt0v"
+            data-oid="fhufwec"
           >
-            <div className="flex items-center gap-2" data-oid="h1q543f">
+            <div className="flex items-center gap-2" data-oid="w4gq58_">
               <span
                 className="material-symbols-outlined text-primary text-lg"
-                data-oid="-t:vixl"
+                data-oid="y-lin5r"
               >
                 import_contacts
               </span>
-              <span data-oid="u9k184e">12 Módulos</span>
+              <span data-oid="qiawhuu">12 Módulos</span>
             </div>
-            <div className="flex items-center gap-2" data-oid="i4ik.c9">
+            <div className="flex items-center gap-2" data-oid="osq_741">
               <span
                 className="material-symbols-outlined text-primary text-lg"
-                data-oid="8t2y4s3"
+                data-oid="8y6i1pi"
               >
                 play_circle
               </span>
-              <span data-oid="-5-igq6">80+ Aulas</span>
+              <span data-oid="oq3t60s">80+ Aulas</span>
             </div>
-            <div className="flex items-center gap-2" data-oid="xntq4t8">
+            <div className="flex items-center gap-2" data-oid="2o2z5qi">
               <span
                 className="material-symbols-outlined text-primary text-lg"
-                data-oid="x_hsc-j"
+                data-oid="qfmswnn"
               >
                 schedule
               </span>
-              <span data-oid="l0h1y.5">120h+ de Código</span>
+              <span data-oid="1wxfeqf">120h+ de Código</span>
             </div>
-            <div className="flex items-center gap-2" data-oid="1f54g-s">
+            <div className="flex items-center gap-2" data-oid="lf5v-72">
               <span
                 className="material-symbols-outlined text-primary text-lg"
-                data-oid="yq4d1m0"
+                data-oid="1vtzuqz"
               >
                 groups
               </span>
-              <span data-oid="_rnyrsc">Vagas Limitadas</span>
+              <span data-oid="bj54asc">Vagas Limitadas</span>
             </div>
           </div>
 
           <div
             className="hero-anim w-full sm:w-auto flex flex-col sm:flex-row items-center gap-4"
-            data-oid="xzmxlps"
+            data-oid="m6j705h"
           >
             <button
               className="btn-magnetic w-full sm:w-auto bg-primary text-background-dark px-10 py-5 rounded-md text-base md:text-lg font-mono font-bold hover:bg-primary/90 transition-colors shadow-[0_0_30px_rgba(201,167,74,0.3)]"
-              data-oid="m3x-fa1"
+              data-oid="gxnip_-"
             >
               [ Entrar na Formação ]
             </button>
@@ -114,136 +136,141 @@ export default function Hero() {
 
         <div
           className="hero-anim relative z-10 w-full mt-8 lg:mt-0"
-          data-oid="2ikg0::"
+          data-oid="qomm:l4"
         >
           <div
-            className="glass rounded-xl border border-white/10 p-2 shadow-2xl relative overflow-hidden group"
-            data-oid="ndz4f_o"
+            className="glass rounded-xl p-2 shadow-2xl relative overflow-hidden group"
+            style={{
+              border: "1px solid rgba(201,167,74,0.18)",
+              boxShadow:
+                "0 0 40px rgba(201,167,74,0.07), 0 24px 64px rgba(0,0,0,0.5)",
+            }}
+            data-oid="-05w4e:"
           >
             <div
               className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-              data-oid="g4p-x9u"
+              data-oid="4mrp:e-"
             ></div>
             <div
               className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-black/40 rounded-t-lg"
-              data-oid="-3:3c.j"
+              data-oid="9g13nr9"
             >
-              <div className="flex gap-2" data-oid="452-f.y">
+              <div className="flex gap-2" data-oid="sw92x9d">
                 <div
                   className="w-3 h-3 rounded-full bg-red-500/80"
-                  data-oid="h1_rnh:"
+                  data-oid="fw9qcsx"
                 ></div>
                 <div
                   className="w-3 h-3 rounded-full bg-yellow-500/80"
-                  data-oid=":sh20sz"
+                  data-oid="z.-msqk"
                 ></div>
                 <div
                   className="w-3 h-3 rounded-full bg-green-500/80"
-                  data-oid=":xlyx8b"
+                  data-oid="ooip.7_"
                 ></div>
               </div>
               <div
                 className="font-mono text-xs text-slate-500"
-                data-oid=".cce7s6"
+                data-oid="06ttfgy"
               >
                 future.ts
               </div>
-              <div className="w-12" data-oid="8z1-4k2"></div>
+              <div className="w-12" data-oid="k2vvzxh"></div>
             </div>
             <div
               className="p-6 bg-[#0D0D12] rounded-b-lg font-mono text-xs sm:text-sm md:text-base leading-relaxed overflow-hidden relative"
-              data-oid="2k512g_"
+              data-oid="m24m1i3"
             >
-              <div className="flex" data-oid="a165y.k">
+              <div className="flex" data-oid="e.09bit">
                 <div
                   className="flex flex-col text-slate-600 select-none pr-4 border-r border-white/5 mr-4 items-end"
-                  data-oid="7r.f2j_"
+                  data-oid="gn_i6.o"
                 >
-                  <span data-oid="h05m24w">1</span>
-                  <span data-oid="nt2z_-e">2</span>
-                  <span data-oid="n4_o40x">3</span>
-                  <span data-oid="puk-9yv">4</span>
-                  <span data-oid="ttx1g5w">5</span>
-                  <span data-oid="c.r_g.3">6</span>
-                  <span data-oid="1-_2m14">7</span>
-                  <span data-oid="2y2:02w">8</span>
+                  <span data-oid="19xbkmy">1</span>
+                  <span data-oid="pc_3x7g">2</span>
+                  <span data-oid="5d.pgi7">3</span>
+                  <span data-oid="413qra_">4</span>
+                  <span data-oid=":xv77_o">5</span>
+                  <span data-oid="s8zyu:t">6</span>
+                  <span data-oid="0x.fh:b">7</span>
+                  <span data-oid="bpaqya0">8</span>
                 </div>
-                <div className="text-slate-300" data-oid="h7d.a--">
-                  <p data-oid="-nn6x33">
-                    <span className="text-[#FF7B72]" data-oid="u97z3r0">
+                <div className="text-slate-300" data-oid="wyxop2u">
+                  <p data-oid="13bgydo">
+                    <span className="text-[#FF7B72]" data-oid="p3vu7ge">
                       import
                     </span>{" "}
                     &#123;{" "}
-                    <span className="text-[#D2A8FF]" data-oid="_2y05e7">
+                    <span className="text-[#D2A8FF]" data-oid="pxhjgg4">
                       Future
                     </span>{" "}
                     &#125;{" "}
-                    <span className="text-[#FF7B72]" data-oid="t9g59.u">
+                    <span className="text-[#FF7B72]" data-oid="wqw35qk">
                       from
                     </span>{" "}
-                    <span className="text-[#A5D6FF]" data-oid="n::q-63">
+                    <span className="text-[#A5D6FF]" data-oid="egn7.fl">
                       '@codestart/core'
                     </span>
                     ;
                   </p>
-                  <p className="mt-2" data-oid="5swyq6y">
-                    <span className="text-[#FF7B72]" data-oid="_r857ox">
+                  <p className="mt-2" data-oid="tt_7svq">
+                    <span className="text-[#FF7B72]" data-oid="s:mtnti">
                       const
                     </span>{" "}
-                    <span className="text-[#79C0FF]" data-oid="s3k67k5">
+                    <span className="text-[#79C0FF]" data-oid="ho77m:-">
                       student
                     </span>{" "}
                     ={" "}
-                    <span className="text-[#FF7B72]" data-oid=".1q3a:s">
+                    <span className="text-[#FF7B72]" data-oid="uinws_:">
                       new
                     </span>{" "}
-                    <span className="text-[#D2A8FF]" data-oid="452p-e-">
+                    <span className="text-[#D2A8FF]" data-oid="f1h4gj.">
                       Developer
                     </span>
                     ();
                   </p>
-                  <p className="mt-2" data-oid="0x3gqny">
-                    <span className="text-[#FF7B72]" data-oid="f:84.r.">
+                  <p className="mt-2" data-oid="tv1meer">
+                    <span className="text-[#FF7B72]" data-oid="y1utp59">
                       await
                     </span>{" "}
                     student.
-                    <span className="text-[#D2A8FF]" data-oid="m9_ndq4">
+                    <span className="text-[#D2A8FF]" data-oid="nmwz5i3">
                       upgrade
                     </span>
                     (&#123;
                   </p>
-                  <p className="pl-4 md:pl-8 text-slate-400" data-oid="n2f..u_">
+                  <p className="pl-4 md:pl-8 text-slate-400" data-oid="ixcb3mf">
                     skills: [
-                    <span className="text-[#A5D6FF]" data-oid="h9k1.41">
+                    <span className="text-[#A5D6FF]" data-oid="q0qyzbm">
                       'React'
                     </span>
                     ,{" "}
-                    <span className="text-[#A5D6FF]" data-oid="j3j__--">
+                    <span className="text-[#A5D6FF]" data-oid="je-6maa">
                       'Node'
                     </span>
                     ,{" "}
-                    <span className="text-[#A5D6FF]" data-oid="4-bso1i">
+                    <span className="text-[#A5D6FF]" data-oid="akxzq.g">
                       'System Design'
                     </span>
                     ],
                   </p>
-                  <p className="pl-4 md:pl-8 text-slate-400" data-oid="fsoz4l-">
+                  <p className="pl-4 md:pl-8 text-slate-400" data-oid="df2_crx">
                     mindset:{" "}
-                    <span className="text-[#79C0FF]" data-oid="o0.37f8">
+                    <span className="text-[#79C0FF]" data-oid="9zy_q2h">
                       Elite
                     </span>
                     ,
                   </p>
-                  <p className="pl-4 md:pl-8 text-slate-400" data-oid="_y.d0x4">
+                  <p className="pl-4 md:pl-8 text-slate-400" data-oid="wkl1346">
                     salary:{" "}
-                    <span className="text-[#A5D6FF]" data-oid="w._07l4">
+                    <span className="text-[#A5D6FF]" data-oid="dxkor1a">
                       'USD'
                     </span>
                   </p>
-                  <p data-oid="5sogb4_">&#125;);</p>
+                  <p data-oid="1akiwsz">&#125;);</p>
                   <p
                     className="mt-2 text-primary translate-y-1 blinking-cursor w-2.5 h-4 md:h-5 inline-block bg-primary align-middle"
-                    data-oid="d9z7f_t"
+                    data-oid="ptqf--v"
                   ></p>
                 </div>
               </div>
@@ -251,20 +278,35 @@ export default function Hero() {
           </div>
 
           <div
-            className="mt-6 flex items-start gap-4 p-5 bg-white/5 border border-white/10 rounded-lg shadow-lg hover:border-primary/20 transition-all group"
-            data-oid="-t:j76s"
+            className="mt-5 flex items-center gap-4 p-5 rounded-xl transition-all group"
+            style={{
+              background: "linear-gradient(135deg, #10101e 0%, #0a0a12 100%)",
+              border: "1px solid rgba(201,167,74,0.14)",
+              boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
+            }}
+            data-oid=":l3dmi5"
           >
-            <span
-              className="material-symbols-outlined text-primary text-3xl group-hover:scale-110 transition-transform"
-              data-oid="u964:0z"
+            <div
+              className="shrink-0 size-10 rounded-xl flex items-center justify-center"
+              style={{
+                background: "rgba(201,167,74,0.10)",
+                border: "1px solid rgba(201,167,74,0.22)",
+              }}
+              data-oid="2ocsef6"
             >
-              lock
-            </span>
+              <span
+                className="material-symbols-outlined text-xl"
+                style={{ color: "#C9A84C" }}
+                data-oid="utf3lez"
+              >
+                verified_user
+              </span>
+            </div>
             <p
-              className="text-xs md:text-sm font-light text-slate-400 font-mono leading-relaxed"
-              data-oid="b64r-7a"
+              className="text-xs md:text-sm font-mono leading-relaxed text-slate-400"
+              data-oid="8b2vqvz"
             >
-              <strong className="text-slate-200 font-bold" data-oid="f799-5g">
+              <strong className="text-slate-200 font-bold" data-oid="7a_1ma.">
                 Garantia de 7 dias.{" "}
               </strong>
               Se não se adaptar à metodologia, devolvemos 100% do seu
