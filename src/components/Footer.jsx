@@ -150,7 +150,7 @@ export default function Footer() {
             className="text-[10px] text-slate-600 font-mono uppercase tracking-widest"
             data-oid="5t98tx."
           >
-            © 2026 CodeStart Academy. PRECISÃO EM CADA LINHA.
+            © 2026 CodeStart Academy. TODOS OS DIREITOS RESERVADOS.
           </p>
         </div>
       </div>
