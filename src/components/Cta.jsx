@@ -267,7 +267,7 @@ export default function Cta() {
                     className="text-[4.5rem] font-bold text-slate-100 leading-none tracking-tight"
                     data-oid="23asbw3"
                   >
-                    34
+                    49
                     <span
                       className="border-[#00000000] border-0 text-[#E5E7EB]"
                       data-oid="49co:og"
@@ -286,7 +286,7 @@ export default function Cta() {
                   className="font-mono text-[11px] text-slate-600"
                   data-oid="cko87im"
                 >
-                  ou R$343,45 à vista — economia de R$353,55
+                  ou R$497,00 à vista — economia de R$200,00
                 </div>
               </div>
 

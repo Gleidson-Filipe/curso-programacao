@@ -55,82 +55,145 @@ export default function Hero() {
           className="flex flex-col items-start text-left z-10"
           data-oid="sr32.ir"
         >
+          {/* Badge com ping animado */}
+          <div
+            className="hero-anim inline-flex items-center gap-2.5 mb-7 rounded-full px-4 py-1.5 font-mono text-xs text-primary font-bold tracking-widest uppercase"
+            style={{
+              background: "rgba(201,167,74,0.07)",
+              border: "1px solid rgba(201,167,74,0.22)",
+            }}
+            data-oid="9w661e9"
+          >
+            <span className="relative flex h-2 w-2 shrink-0" data-oid="nuxot3b">
+              <span
+                className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60"
+                data-oid="anox0v4"
+              ></span>
+              <span
+                className="relative inline-flex rounded-full h-2 w-2 bg-primary"
+                data-oid="fdjwnbb"
+              ></span>
+            </span>
+            Vagas abertas · Turma 2026
+          </div>
+
           <h1
-            className="hero-anim font-display font-bold text-4xl md:text-6xl lg:text-5xl xl:text-6xl text-slate-100 leading-[1.1] mb-8 tracking-tight"
+            className="hero-anim font-display font-bold text-5xl md:text-6xl xl:text-[4.2rem] text-slate-100 leading-[1.05] mb-6 tracking-tight"
             data-oid="etq_7ym"
           >
-            <span data-oid="sppcue3">A vontade de aprender</span>
-            <br data-oid="jjoqkkw" />
-            <span data-oid="e39lttg">encontra a</span>
-            <br data-oid="cz7qh:j" />
+            De zero ao nível
+            <br data-oid="41gozna" />
+            <span className="text-slate-400 font-light" data-oid="p99_88-">
+              sênior, com a
+            </span>
+            <br data-oid="hzkux.x" />
             <span
-              className="text-primary font-mono italic text-3xl md:text-5xl lg:text-4xl xl:text-5xl font-normal block mt-2 tracking-normal break-words"
+              className="text-primary italic font-serif tracking-wide"
               data-oid="wyutt:s"
             >
-              {"<precisão_do_código/>"}
+              precisão certa.
             </span>
           </h1>
 
           <p
-            className="hero-anim text-base md:text-lg text-slate-400 max-w-xl mb-10 font-mono leading-relaxed"
+            className="hero-anim text-sm text-slate-400 max-w-lg mb-10 font-mono leading-relaxed"
             data-oid="9gnsg6v"
           >
-            // Aprenda do zero através de projetos práticos com uma metodologia
-            de elite desenhada para o mercado internacional.
+            // Protocolo de ensino com engenharia reversa das exigências reais
+            do mercado internacional — do primeiro commit ao emprego.
           </p>
 
+          {/* Stats com pill colorido */}
           <div
-            className="hero-anim flex flex-wrap items-center gap-x-6 gap-y-4 mb-12 text-xs md:text-sm font-mono text-slate-300"
+            className="hero-anim flex flex-wrap items-center gap-3 mb-10"
             data-oid="fhufwec"
           >
-            <div className="flex items-center gap-2" data-oid="w4gq58_">
-              <span
-                className="material-symbols-outlined text-primary text-lg"
-                data-oid="y-lin5r"
+            {[
+              {
+                icon: "import_contacts",
+                label: "12 Módulos",
+                color: "#7B61FF",
+              },
+              { icon: "play_circle", label: "80+ Aulas", color: "#C9A84C" },
+              { icon: "schedule", label: "120h de Código", color: "#00B894" },
+              { icon: "groups", label: "340+ Alunos", color: "#74B9FF" },
+            ].map(({ icon, label, color }) => (
+              <div
+                key={label}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg font-mono text-xs text-slate-300"
+                style={{
+                  background: `${color}0d`,
+                  border: `1px solid ${color}28`,
+                }}
+                data-oid="lmit4o."
               >
-                import_contacts
-              </span>
-              <span data-oid="qiawhuu">12 Módulos</span>
-            </div>
-            <div className="flex items-center gap-2" data-oid="osq_741">
-              <span
-                className="material-symbols-outlined text-primary text-lg"
-                data-oid="8y6i1pi"
-              >
-                play_circle
-              </span>
-              <span data-oid="oq3t60s">80+ Aulas</span>
-            </div>
-            <div className="flex items-center gap-2" data-oid="2o2z5qi">
-              <span
-                className="material-symbols-outlined text-primary text-lg"
-                data-oid="qfmswnn"
-              >
-                schedule
-              </span>
-              <span data-oid="1wxfeqf">120h+ de Código</span>
-            </div>
-            <div className="flex items-center gap-2" data-oid="lf5v-72">
-              <span
-                className="material-symbols-outlined text-primary text-lg"
-                data-oid="1vtzuqz"
-              >
-                groups
-              </span>
-              <span data-oid="bj54asc">Vagas Limitadas</span>
-            </div>
+                <span
+                  className="material-symbols-outlined text-base"
+                  style={{ color }}
+                  data-oid="z9f6iui"
+                >
+                  {icon}
+                </span>
+                {label}
+              </div>
+            ))}
           </div>
 
+          {/* Botão CTA com preço */}
           <div
-            className="hero-anim w-full sm:w-auto flex flex-col sm:flex-row items-center gap-4"
+            className="hero-anim w-full sm:w-auto flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6"
             data-oid="m6j705h"
           >
             <button
-              className="btn-magnetic w-full sm:w-auto bg-primary text-background-dark px-10 py-5 rounded-md text-base md:text-lg font-mono font-bold hover:bg-primary/90 transition-colors shadow-[0_0_30px_rgba(201,167,74,0.3)]"
+              className="btn-magnetic w-full sm:w-auto bg-primary text-background-dark rounded-md font-mono font-bold hover:bg-primary/90 transition-all shadow-[0_0_30px_rgba(201,167,74,0.3)] flex items-stretch overflow-hidden"
               data-oid="gxnip_-"
             >
-              [ Entrar na Formação ]
+              <span className="px-8 py-4 text-base" data-oid="4xe2n4r">
+                [ Entrar na Formação ]
+              </span>
+              <span
+                className="flex items-center px-4 py-4 text-xs font-normal opacity-80"
+                style={{
+                  background: "rgba(0,0,0,0.15)",
+                  borderLeft: "1px solid rgba(0,0,0,0.2)",
+                }}
+                data-oid="c61b68g"
+              >
+                R$49,90/mês
+              </span>
             </button>
+          </div>
+
+          {/* Social proof */}
+          <div
+            className="hero-anim flex items-center gap-3"
+            data-oid="social-proof-hero"
+          >
+            <div className="flex -space-x-2" data-oid="v:95f99">
+              {[
+                { i: "RM", h: 40 },
+                { i: "LC", h: 55 },
+                { i: "AS", h: 30 },
+              ].map(({ i, h }, idx) => (
+                <div
+                  key={idx}
+                  className="w-7 h-7 rounded-full flex items-center justify-center font-mono font-bold text-[8px] text-[#09090f] border-2 border-[#09090D]"
+                  style={{ background: `hsl(${h}, 60%, 52%)` }}
+                  data-oid=":28imwq"
+                >
+                  {i}
+                </div>
+              ))}
+            </div>
+            <p
+              className="font-mono text-[11px] text-slate-500"
+              data-oid="kw..j1f"
+            >
+              <span className="text-slate-300 font-semibold" data-oid="s7yp6rg">
+                340+ profissionais
+              </span>{" "}
+              já transformaram sua carreira
+            </p>
           </div>
         </div>
 
