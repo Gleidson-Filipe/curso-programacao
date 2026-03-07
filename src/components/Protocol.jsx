@@ -147,6 +147,30 @@ export default function Protocol() {
     });
   }, [sliceAngle]);
 
+  // Navigate one card in direction (-1 = left, 1 = right)
+  const navigateWheel = useCallback(
+    (direction) => {
+      if (animFrame.current) cancelAnimationFrame(animFrame.current);
+      if (snapTween.current) snapTween.current.kill();
+      velocity.current = 0;
+
+      const current = angleRef.current;
+      const target = current + direction * sliceAngle;
+
+      const obj = { val: current };
+      snapTween.current = gsap.to(obj, {
+        val: target,
+        duration: 0.5,
+        ease: "power2.inOut",
+        onUpdate: () => {
+          angleRef.current = obj.val;
+          forceRender((n) => n + 1);
+        },
+      });
+    },
+    [sliceAngle],
+  );
+
   // Momentum loop
   const animateMomentum = useCallback(() => {
     if (Math.abs(velocity.current) < 0.12) {
@@ -258,47 +282,44 @@ export default function Protocol() {
     <section
       id="protocolo"
       ref={container}
-      className="py-32 px-0 w-full relative z-10 overflow-hidden"
-      data-oid="oje7brr"
+      className="pt-10 pb-20 px-0 w-full relative z-10 overflow-hidden"
+      data-oid="p2h9lpi"
     >
       {/* Header */}
       <div
-        className="text-center mb-12 max-w-5xl mx-auto px-6"
-        data-oid="protocol-header"
+        className="text-center mb-4 max-w-5xl mx-auto px-6"
+        data-oid="8leane."
       >
         <h2
           className="protocol-header-anim text-3xl md:text-5xl font-display font-bold text-slate-100 mb-6"
-          data-oid="protocol-title"
+          data-oid="-kn4ffu"
         >
           Conteúdo do{" "}
-          <span
-            className="text-primary italic font-serif"
-            data-oid="protocol-highlight"
-          >
+          <span className="text-primary italic font-serif" data-oid="gpv:h2c">
             curso
           </span>
         </h2>
         <p
           className="protocol-header-anim text-slate-400 font-mono text-sm md:text-base flex items-center justify-center gap-3 flex-wrap"
-          data-oid="protocol-stats"
+          data-oid="2aqkzx3"
         >
-          <span data-oid="pjll2wh">12 módulos</span>
-          <span className="text-white/20" data-oid="0aqlvyx">
+          <span data-oid="-b4l_z9">12 módulos</span>
+          <span className="text-white/20" data-oid="ld26:xk">
             ·
           </span>
-          <span data-oid="hvyc_l5">{totalLessons}+ aulas</span>
-          <span className="text-white/20" data-oid="7obo.hy">
+          <span data-oid="fz0njq:">{totalLessons}+ aulas</span>
+          <span className="text-white/20" data-oid="xxho941">
             ·
           </span>
-          <span data-oid="frk6a_.">Atualizações constantes</span>
+          <span data-oid="eomff7i">Atualizações constantes</span>
         </p>
         <p
           className="protocol-header-anim text-slate-600 text-sm mt-4 font-mono flex items-center justify-center gap-2"
-          data-oid="5vo7so-"
+          data-oid="zfqny7e"
         >
           <span
             className="material-symbols-outlined text-base text-primary/60"
-            data-oid="hlb45sz"
+            data-oid="o4e1v5n"
           >
             swipe
           </span>
@@ -310,8 +331,8 @@ export default function Protocol() {
       <div
         ref={wheelRef}
         className="relative w-full cursor-grab active:cursor-grabbing select-none mx-auto"
-        style={{ height: "680px" }}
-        data-oid="wheel-track"
+        style={{ height: "580px" }}
+        data-oid=":67ayg:"
       >
         {modules.map((mod, i) => {
           const cardDeg = i * sliceAngle + wheelAngle;
@@ -323,8 +344,12 @@ export default function Protocol() {
           const tilt = normDeg;
 
           const absNorm = Math.abs(normDeg);
-          const scale = Math.max(0.55, 1.08 - absNorm / 100);
-          const opacity = Math.max(0, 1 - absNorm / 55);
+          const scale = Math.max(0.52, 1.08 - absNorm / 95);
+          // Cards stay opaque; only quick fade at the very edge before cutoff
+          const opacity =
+            absNorm > 52
+              ? Math.max(0, 1 - (absNorm - 52) / 13)
+              : 1 - absNorm / 220;
           const zIndex = Math.round(100 - absNorm);
 
           // Golden border intensity: full at center, fading by 25°
@@ -332,7 +357,17 @@ export default function Protocol() {
           const goldAlpha = Math.round(goldIntensity * 180)
             .toString(16)
             .padStart(2, "0");
-          const goldGlow = goldIntensity * 0.15;
+          const goldGlow = goldIntensity * 0.18;
+
+          // Directional gradient overlay: dark veil entering from the outer edge as card rotates away
+          const edgeOverlay = Math.min(1, Math.max(0, (absNorm - 12) / 42));
+          const overlayDir = normDeg > 0 ? "to left" : "to right";
+
+          // filter: drop-shadow follows the rotated card shape (no bounding-box halo artifacts)
+          const dropShadow =
+            goldIntensity > 0.05
+              ? `drop-shadow(0 6px 16px rgba(0,0,0,0.55)) drop-shadow(0 22px 44px rgba(0,0,0,0.3))`
+              : `drop-shadow(0 4px 12px rgba(0,0,0,0.45)) drop-shadow(0 14px 32px rgba(0,0,0,0.22))`;
 
           if (absNorm > 65) return null;
 
@@ -345,16 +380,18 @@ export default function Protocol() {
                 top: "100%",
                 width: "340px",
                 height: "480px",
-                transform: `translate(calc(-50% + ${x}px), calc(-100% + ${y + radius}px)) rotate(${tilt}deg)`,
+                transform: `translate(calc(-50% + ${x}px), calc(-100% + ${y + radius}px)) rotate(${tilt}deg) translateZ(${zIndex}px)`,
                 transformOrigin: "center center",
                 opacity,
                 zIndex,
+                isolation: "isolate",
                 pointerEvents: "none",
+                filter: dropShadow,
               }}
-              data-oid={`module-card-${mod.id}`}
+              data-oid="s.0dvtw"
             >
               <div
-                className="w-full h-full rounded-[2rem] p-8 flex flex-col justify-between relative overflow-hidden border shadow-2xl"
+                className="w-full h-full rounded-[2rem] p-8 flex flex-col justify-between relative overflow-hidden border"
                 style={{
                   background:
                     "linear-gradient(160deg, #141420 0%, #0b0b12 100%)",
@@ -364,89 +401,261 @@ export default function Protocol() {
                       : `${mod.accent}22`,
                   boxShadow:
                     goldIntensity > 0.05
-                      ? `0 30px 80px rgba(0,0,0,0.7), 0 0 30px rgba(201,168,76,${goldGlow}), inset 0 1px 0 rgba(201,168,76,${goldIntensity * 0.3})`
-                      : `0 30px 80px rgba(0,0,0,0.7), inset 0 1px 0 ${mod.accent}10`,
+                      ? `0 0 18px rgba(201,168,76,${goldGlow}), 0 0 40px rgba(201,168,76,${goldGlow * 0.35}), inset 0 1px 0 rgba(201,168,76,${goldIntensity * 0.3})`
+                      : `inset 0 1px 0 ${mod.accent}10`,
                 }}
-                data-oid=":p_qaiu"
+                data-oid="owtlrlx"
               >
+                {/* Directional edge shading overlay */}
+                {edgeOverlay > 0 && (
+                  <div
+                    className="absolute inset-0 rounded-[2rem] pointer-events-none"
+                    style={{
+                      zIndex: 30,
+                      background: `linear-gradient(${overlayDir}, rgba(4,4,12,${(edgeOverlay * 0.93).toFixed(2)}) 0%, rgba(4,4,12,${(edgeOverlay * 0.45).toFixed(2)}) 45%, transparent 80%)`,
+                    }}
+                    data-oid="_w58lxv"
+                  />
+                )}
+
                 {/* Accent glow */}
                 <div
                   className="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-[60px] opacity-20"
                   style={{ background: mod.accent }}
-                  data-oid="9ps7x3m"
+                  data-oid="zuzkj4y"
                 />
 
                 {/* Decorative dots */}
                 <div
                   className="absolute top-6 right-6 opacity-15"
-                  data-oid="je6k:t3"
+                  data-oid="ng09063"
                 >
-                  <div className="grid grid-cols-3 gap-1.5" data-oid="muaxo7e">
+                  <div className="grid grid-cols-3 gap-1.5" data-oid="_r6ttgi">
                     {Array.from({ length: 9 }).map((_, dotIdx) => (
                       <div
                         key={dotIdx}
                         className="w-1 h-1 rounded-full bg-white"
-                        data-oid=":_pe6ok"
+                        data-oid="3k-efgf"
                       />
                     ))}
                   </div>
                 </div>
 
                 {/* Top */}
-                <div className="relative z-10" data-oid="9lwzxbv">
+                <div className="relative z-10" data-oid="cq1yl_k">
                   <div
                     className="font-mono text-[11px] uppercase tracking-[0.25em] mb-5 opacity-60"
                     style={{ color: mod.accent }}
-                    data-oid="m09f1vo"
+                    data-oid="xd55ad1"
                   >
                     Módulo {String(mod.id).padStart(2, "0")}
                   </div>
                   <span
                     className="material-symbols-outlined text-5xl mb-5 block"
                     style={{ color: mod.accent }}
-                    data-oid="40rhvnj"
+                    data-oid="v_jxfuv"
                   >
                     {mod.icon}
                   </span>
                   <h3
                     className="text-white font-bold text-2xl leading-tight tracking-tight"
-                    data-oid="94rlkou"
+                    data-oid="dlmqn:y"
                   >
                     {mod.title}
                   </h3>
                 </div>
 
                 {/* Bottom */}
-                <div className="relative z-10" data-oid="o9r4in-">
+                <div className="relative z-10" data-oid="vf_we86">
                   <p
                     className="text-slate-400 text-sm leading-relaxed mb-5"
-                    data-oid="whejb4d"
+                    data-oid="h12n3o7"
                   >
                     {mod.desc}
                   </p>
                   <div
                     className="flex items-center justify-between"
-                    data-oid="a_hqyd4"
+                    style={{ pointerEvents: "auto" }}
+                    data-oid="j3rerzs"
                   >
                     <span
                       className="font-mono text-xs opacity-60"
                       style={{ color: mod.accent }}
-                      data-oid="399qfh5"
+                      data-oid="8huz89f"
                     >
                       {mod.lessons} aulas
                     </span>
-                    <div
-                      className="w-9 h-9 rounded-full flex items-center justify-center"
-                      style={{ background: `${mod.accent}18` }}
-                      data-oid="yfc4p:z"
-                    >
-                      <span
-                        className="material-symbols-outlined text-base"
-                        style={{ color: mod.accent }}
-                        data-oid="cob2i65"
+                    <div className="flex items-center gap-3" data-oid="xwflqb7">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigateWheel(1);
+                        }}
+                        className="w-10 h-10 rounded-lg flex items-center justify-center cursor-pointer transition-all duration-200 hover:scale-110 active:scale-90 group"
+                        style={{
+                          background: "rgba(255,255,255,0.04)",
+                          border: "1px solid rgba(255,255,255,0.06)",
+                          imageRendering: "pixelated",
+                        }}
+                        data-oid="d8psuw8"
                       >
-                        arrow_forward
-                      </span>
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 14 14"
+                          fill="none"
+                          style={{ imageRendering: "pixelated" }}
+                          data-oid="yu5ce9q"
+                        >
+                          <rect
+                            x="8"
+                            y="0"
+                            width="2"
+                            height="2"
+                            fill="#C9A84C"
+                            data-oid="8wzgatg"
+                          />
+
+                          <rect
+                            x="6"
+                            y="2"
+                            width="2"
+                            height="2"
+                            fill="#C9A84C"
+                            data-oid="sk64q_o"
+                          />
+
+                          <rect
+                            x="4"
+                            y="4"
+                            width="2"
+                            height="2"
+                            fill="#C9A84C"
+                            data-oid="kqxz_fg"
+                          />
+
+                          <rect
+                            x="2"
+                            y="6"
+                            width="2"
+                            height="2"
+                            fill="#C9A84C"
+                            data-oid="w8xtw76"
+                          />
+
+                          <rect
+                            x="4"
+                            y="8"
+                            width="2"
+                            height="2"
+                            fill="#C9A84C"
+                            data-oid="77jg.n:"
+                          />
+
+                          <rect
+                            x="6"
+                            y="10"
+                            width="2"
+                            height="2"
+                            fill="#C9A84C"
+                            data-oid="2gqh6ua"
+                          />
+
+                          <rect
+                            x="8"
+                            y="12"
+                            width="2"
+                            height="2"
+                            fill="#C9A84C"
+                            data-oid=".v566p9"
+                          />
+                        </svg>
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigateWheel(-1);
+                        }}
+                        className="w-10 h-10 rounded-lg flex items-center justify-center cursor-pointer transition-all duration-200 hover:scale-110 active:scale-90 group"
+                        style={{
+                          background: "rgba(255,255,255,0.04)",
+                          border: "1px solid rgba(255,255,255,0.06)",
+                          imageRendering: "pixelated",
+                        }}
+                        data-oid="3-9rgcs"
+                      >
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 14 14"
+                          fill="none"
+                          style={{ imageRendering: "pixelated" }}
+                          data-oid="e.s3qj:"
+                        >
+                          <rect
+                            x="4"
+                            y="0"
+                            width="2"
+                            height="2"
+                            fill="#C9A84C"
+                            data-oid="ik.60ax"
+                          />
+
+                          <rect
+                            x="6"
+                            y="2"
+                            width="2"
+                            height="2"
+                            fill="#C9A84C"
+                            data-oid="069dray"
+                          />
+
+                          <rect
+                            x="8"
+                            y="4"
+                            width="2"
+                            height="2"
+                            fill="#C9A84C"
+                            data-oid="jy9:-8d"
+                          />
+
+                          <rect
+                            x="10"
+                            y="6"
+                            width="2"
+                            height="2"
+                            fill="#C9A84C"
+                            data-oid="53iy3bq"
+                          />
+
+                          <rect
+                            x="8"
+                            y="8"
+                            width="2"
+                            height="2"
+                            fill="#C9A84C"
+                            data-oid=".9ic7bq"
+                          />
+
+                          <rect
+                            x="6"
+                            y="10"
+                            width="2"
+                            height="2"
+                            fill="#C9A84C"
+                            data-oid="sq4.np9"
+                          />
+
+                          <rect
+                            x="4"
+                            y="12"
+                            width="2"
+                            height="2"
+                            fill="#C9A84C"
+                            data-oid="w7m-ngw"
+                          />
+                        </svg>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -462,7 +671,7 @@ export default function Protocol() {
             background:
               "linear-gradient(to right, var(--color-background) 0%, transparent 100%)",
           }}
-          data-oid="6_mqi8d"
+          data-oid="388qnul"
         />
 
         {/* Edge fade — right */}
@@ -472,9 +681,20 @@ export default function Protocol() {
             background:
               "linear-gradient(to left, var(--color-background) 0%, transparent 100%)",
           }}
-          data-oid="9wh5mg1"
+          data-oid="iw-py-_"
         />
       </div>
+
+      {/* Bottom fade — dissolves cards into Testimonials */}
+      <div
+        className="absolute bottom-0 left-0 right-0 pointer-events-none z-[300]"
+        style={{
+          height: "160px",
+          background:
+            "linear-gradient(to bottom, transparent 0%, #0D0D12 100%)",
+        }}
+        data-oid=".7:t8zk"
+      />
     </section>
   );
 }
