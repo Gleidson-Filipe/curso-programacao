@@ -120,12 +120,11 @@ const row2 = [
 function MarqueeCard({ item }) {
   return (
     <div
-      className="flex-shrink-0 w-[370px] rounded-2xl p-6 relative overflow-hidden"
+      className="w-full rounded-2xl p-6 relative overflow-hidden"
       style={{
         background: "linear-gradient(135deg, #0f0f1c 0%, #0a0a13 100%)",
         border: `1px solid ${item.accent}20`,
       }}
-      data-oid="5l2t7t6"
     >
       {/* Accent bar on left edge */}
       <div
@@ -133,58 +132,36 @@ function MarqueeCard({ item }) {
         style={{
           background: `linear-gradient(to bottom, ${item.accent}, transparent)`,
         }}
-        data-oid="36:5d:m"
       />
 
       {/* Stars */}
-      <div className="flex items-center gap-1 mb-4 pl-1" data-oid="3s0p2r9">
+      <div className="flex items-center gap-1 mb-4 pl-1">
         {[...Array(5)].map((_, i) => (
-          <svg
-            key={i}
-            width="10"
-            height="10"
-            viewBox="0 0 14 14"
-            fill="none"
-            data-oid="lz0.hil"
-          >
+          <svg key={i} width="10" height="10" viewBox="0 0 14 14" fill="none">
             <polygon
               points="7,1 8.8,5.4 13.5,5.8 10,9 11.1,13.6 7,11 2.9,13.6 4,9 0.5,5.8 5.2,5.4"
               fill={item.accent}
-              data-oid="rcqkr3q"
             />
           </svg>
         ))}
         <span
           className="font-mono text-[9px] uppercase tracking-widest ml-2 opacity-50"
           style={{ color: item.accent }}
-          data-oid="6p.x9ip"
         >
           {item.weeks} semanas
         </span>
       </div>
 
-      <p
-        className="text-slate-300 text-sm leading-relaxed mb-5 pl-1"
-        data-oid="7l16v7g"
-      >
+      <p className="text-slate-300 text-sm leading-relaxed mb-5 pl-1">
         &ldquo;{item.quote}&rdquo;
       </p>
 
-      <div
-        className="flex items-center justify-between pt-4 border-t border-white/[0.05] pl-1"
-        data-oid="qh-8ffq"
-      >
-        <div data-oid="4jo1g_x">
-          <div
-            className="text-slate-200 text-sm font-semibold"
-            data-oid="9bxupny"
-          >
+      <div className="flex items-center justify-between pt-4 border-t border-white/[0.05] pl-1">
+        <div>
+          <div className="text-slate-200 text-sm font-semibold">
             {item.name}
           </div>
-          <div
-            className="text-slate-500 font-mono text-[10px]"
-            data-oid="e2_eltp"
-          >
+          <div className="text-slate-500 font-mono text-[10px]">
             {item.role}
           </div>
         </div>
@@ -195,7 +172,6 @@ function MarqueeCard({ item }) {
             background: `${item.accent}14`,
             border: `1px solid ${item.accent}20`,
           }}
-          data-oid="gg3b6p."
         >
           {item.salary}
         </div>
@@ -253,10 +229,10 @@ export default function Testimonials() {
 
   return (
     <section
+      id="depoimentos"
       ref={containerRef}
       className="relative w-full z-10 overflow-hidden"
-      style={{ background: "#0D0D12" }}
-      data-oid="cjk_-yh"
+      style={{ background: "#0D0D12", scrollMarginTop: "90px" }}
     >
       {/* Faint radial glow backdrop */}
       <div
@@ -266,86 +242,50 @@ export default function Testimonials() {
             "radial-gradient(ellipse at center, rgba(201,167,74,0.04) 0%, transparent 70%)",
           filter: "blur(40px)",
         }}
-        data-oid="0nww:3n"
       />
 
-      <div className="max-w-7xl mx-auto px-6 pt-28 pb-8" data-oid="bp.9-kp">
+      <div className="max-w-7xl mx-auto px-6 pt-28 pb-8">
         {/* Label */}
-        <div
-          className="testimonials-fade flex items-center gap-3 mb-7"
-          data-oid="2_y0b1q"
-        >
-          <span
-            className="font-mono text-[10px] uppercase tracking-[0.35em] text-primary/50"
-            data-oid="__8pw8_"
-          >
+        <div className="testimonials-fade flex items-center gap-3 mb-7">
+          <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-primary/50">
             {"// output.log"}
           </span>
-          <div className="h-px w-12 bg-primary/20" data-oid="vk_ljco" />
+          <div className="h-px w-12 bg-primary/20" />
         </div>
 
         {/* Heading */}
-        <div className="testimonials-fade mb-16 max-w-3xl" data-oid="qojhfl-">
-          <h2
-            className="text-4xl md:text-[3.25rem] font-bold leading-[1.15] tracking-tight"
-            data-oid="ys-v1fy"
-          >
-            <span
-              className="block font-display text-slate-100"
-              data-oid="6h3jrd1"
-            >
+        <div className="testimonials-fade mb-16 max-w-3xl">
+          <h2 className="text-4xl md:text-[3.25rem] font-bold leading-[1.15] tracking-tight">
+            <span className="block font-display text-slate-100">
               Não são promessas.
             </span>
-            <span
-              className="block font-drama italic text-primary"
-              data-oid="ggx6b.0"
-            >
+            <span className="block font-drama italic text-primary">
               São transformações reais.
             </span>
           </h2>
-          <p
-            className="text-slate-500 font-mono text-sm mt-5"
-            data-oid="by:vlpq"
-          >
+          <p className="text-slate-500 font-mono text-sm mt-5">
             Histórias de quem aplicou o protocolo e mudou de vida.
           </p>
         </div>
 
         {/* Stats strip */}
-        <div
-          className="stats-strip testimonials-fade grid grid-cols-2 md:grid-cols-4 mb-20"
-          data-oid="frm5nle"
-        >
+        <div className="stats-strip testimonials-fade grid grid-cols-2 md:grid-cols-4 mb-20">
           {stats.map((stat, i) => (
-            <div
-              key={i}
-              className="stat-item relative px-0 py-6 group"
-              data-oid="rd2vyzr"
-            >
+            <div key={i} className="stat-item relative px-0 py-6 group">
               {/* Separator lines */}
               {i > 0 && (
-                <div
-                  className="absolute left-0 top-1/4 bottom-1/4 w-px bg-white/8"
-                  data-oid="24bfn7b"
-                />
+                <div className="absolute left-0 top-1/4 bottom-1/4 w-px bg-white/8" />
               )}
-              <div
-                className="text-3xl md:text-4xl font-display font-bold text-primary mb-1"
-                data-oid="-oc6..j"
-              >
+              <div className="text-3xl md:text-4xl font-display font-bold text-primary mb-1">
                 {stat.value}
               </div>
-              <div
-                className="font-mono text-[10px] uppercase tracking-widest text-slate-600"
-                data-oid=":vehuxe"
-              >
+              <div className="font-mono text-[10px] uppercase tracking-widest text-slate-600">
                 {stat.label}
               </div>
               {/* Bottom accent line animates in on scroll */}
               <div
                 className="absolute bottom-0 left-0 h-px bg-gradient-to-r from-primary/30 to-transparent transition-all duration-500 group-hover:from-primary/60"
                 style={{ width: "60%" }}
-                data-oid="7wq2atp"
               />
             </div>
           ))}
@@ -358,7 +298,6 @@ export default function Testimonials() {
             background: "linear-gradient(150deg, #10101e 0%, #09090f 100%)",
             border: "1px solid rgba(201,167,74,0.13)",
           }}
-          data-oid="9np70be"
         >
           {/* Background glow blobs */}
           <div
@@ -368,7 +307,6 @@ export default function Testimonials() {
                 "radial-gradient(circle, rgba(201,167,74,0.07) 0%, transparent 70%)",
               filter: "blur(30px)",
             }}
-            data-oid="5fb6vty"
           />
 
           <div
@@ -378,35 +316,27 @@ export default function Testimonials() {
                 "radial-gradient(circle, rgba(123,97,255,0.06) 0%, transparent 70%)",
               filter: "blur(30px)",
             }}
-            data-oid="pvnd7w8"
           />
 
-          <div className="grid md:grid-cols-[1fr_380px]" data-oid="pbjwax0">
+          <div className="grid md:grid-cols-[1fr_380px]">
             {/* LEFT — Quote */}
-            <div
-              className="p-10 md:p-14 flex flex-col justify-between border-r border-white/[0.06]"
-              data-oid="3d0_0sa"
-            >
+            <div className="p-10 md:p-14 flex flex-col justify-between border-r border-white/[0.06]">
               {/* Opening quote mark */}
-              <div data-oid="zc6pa9l">
+              <div>
                 <span
                   className="font-drama text-8xl text-primary/15 leading-none block -mb-6 select-none"
                   aria-hidden="true"
-                  data-oid="haro1it"
                 >
                   "
                 </span>
-                <p
-                  className="text-slate-200 text-xl md:text-2xl leading-relaxed font-light max-w-xl"
-                  data-oid="tjumuc5"
-                >
+                <p className="text-slate-200 text-xl md:text-2xl leading-relaxed font-light max-w-xl">
                   {featured.quote}
                 </p>
               </div>
 
               {/* Stars + verified */}
-              <div className="flex items-center gap-4 mt-10" data-oid="u-sw61q">
-                <div className="flex items-center gap-1" data-oid="dvbh4_f">
+              <div className="flex items-center gap-4 mt-10">
+                <div className="flex items-center gap-1">
                   {[...Array(5)].map((_, i) => (
                     <svg
                       key={i}
@@ -414,12 +344,10 @@ export default function Testimonials() {
                       height="14"
                       viewBox="0 0 14 14"
                       fill="none"
-                      data-oid="7l9n.yg"
                     >
                       <polygon
                         points="7,1 8.8,5.4 13.5,5.8 10,9 11.1,13.6 7,11 2.9,13.6 4,9 0.5,5.8 5.2,5.4"
                         fill="#C9A84C"
-                        data-oid="o_pg0am"
                       />
                     </svg>
                   ))}
@@ -431,12 +359,8 @@ export default function Testimonials() {
                     background: "rgba(201,167,74,0.08)",
                     border: "1px solid rgba(201,167,74,0.15)",
                   }}
-                  data-oid="sauz_c7"
                 >
-                  <span
-                    className="material-symbols-outlined text-[13px]"
-                    data-oid="xf82o6b"
-                  >
+                  <span className="material-symbols-outlined text-[13px]">
                     verified
                   </span>
                   Verificado
@@ -445,25 +369,16 @@ export default function Testimonials() {
             </div>
 
             {/* RIGHT — Identity + Transformation */}
-            <div
-              className="p-10 md:p-14 flex flex-col justify-between gap-10"
-              data-oid="l99a.kx"
-            >
+            <div className="p-10 md:p-14 flex flex-col justify-between gap-10">
               {/* Transformation widget */}
-              <div data-oid="x5fmioi">
-                <div
-                  className="font-mono text-[10px] uppercase tracking-[0.3em] text-slate-600 mb-6"
-                  data-oid="kjold68"
-                >
+              <div>
+                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-slate-600 mb-6">
                   Transformação em {featured.weeks} semanas
                 </div>
 
-                <div className="flex items-end gap-5" data-oid="3_xjuy8">
-                  <div data-oid="4qj.s9-">
-                    <div
-                      className="font-mono text-[9px] uppercase tracking-widest text-slate-600 mb-2"
-                      data-oid="20wtycq"
-                    >
+                <div className="flex items-end gap-5">
+                  <div>
+                    <div className="font-mono text-[9px] uppercase tracking-widest text-slate-600 mb-2">
                       Antes
                     </div>
                     <div
@@ -472,41 +387,28 @@ export default function Testimonials() {
                         textDecoration: "line-through",
                         textDecorationColor: "rgba(239,68,68,0.5)",
                       }}
-                      data-oid="cqiprbk"
                     >
                       {featured.before}
                     </div>
                   </div>
 
                   {/* Arrow */}
-                  <span
-                    className="material-symbols-outlined text-primary/40 text-2xl mb-1 select-none"
-                    data-oid="uvahdt7"
-                  >
+                  <span className="material-symbols-outlined text-primary/40 text-2xl mb-1 select-none">
                     arrow_forward
                   </span>
 
-                  <div data-oid="g6kb8g-">
-                    <div
-                      className="font-mono text-[9px] uppercase tracking-widest text-slate-600 mb-2"
-                      data-oid="c:e4s1u"
-                    >
+                  <div>
+                    <div className="font-mono text-[9px] uppercase tracking-widest text-slate-600 mb-2">
                       Após
                     </div>
-                    <div
-                      className="text-3xl font-bold text-primary"
-                      data-oid="kvehhdz"
-                    >
+                    <div className="text-3xl font-bold text-primary">
                       {featured.after}
                     </div>
                   </div>
                 </div>
 
                 {/* Income bar visualization */}
-                <div
-                  className="mt-5 flex gap-1 items-end h-6"
-                  data-oid="mh82c:9"
-                >
+                <div className="mt-5 flex gap-1 items-end h-6">
                   {[0.19, 0.22, 0.28, 0.35, 0.45, 0.58, 0.72, 0.85, 1].map(
                     (h, i) => (
                       <div
@@ -519,7 +421,6 @@ export default function Testimonials() {
                               ? "rgba(100,116,139,0.25)"
                               : `rgba(201,167,74,${0.15 + (i - 3) * 0.12})`,
                         }}
-                        data-oid="nu_apru"
                       />
                     ),
                   )}
@@ -527,31 +428,21 @@ export default function Testimonials() {
               </div>
 
               {/* Person identity */}
-              <div
-                className="flex items-center gap-4 pt-8 border-t border-white/[0.06]"
-                data-oid="pqj_v8."
-              >
+              <div className="flex items-center gap-4 pt-8 border-t border-white/[0.06]">
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center font-mono font-bold text-sm text-[#09090f] shrink-0"
                   style={{ background: "#C9A84C" }}
-                  data-oid="7nqyc8f"
                 >
                   {featured.name
                     .split(" ")
                     .map((w) => w[0])
                     .join("")}
                 </div>
-                <div data-oid="zpyjhg.">
-                  <div
-                    className="text-slate-200 font-semibold"
-                    data-oid="tkrr80g"
-                  >
+                <div>
+                  <div className="text-slate-200 font-semibold">
                     {featured.name}
                   </div>
-                  <div
-                    className="text-slate-500 font-mono text-xs"
-                    data-oid="f.22pyl"
-                  >
+                  <div className="text-slate-500 font-mono text-xs">
                     {featured.role}
                   </div>
                 </div>
@@ -562,13 +453,10 @@ export default function Testimonials() {
       </div>
 
       {/* ── Grid de depoimentos ────────────────────────────── */}
-      <div className="max-w-7xl mx-auto px-6 pb-28 pt-6" data-oid="474eoum">
-        <div
-          className="grid grid-cols-1 md:grid-cols-3 gap-4"
-          data-oid="jo35hsu"
-        >
+      <div className="max-w-7xl mx-auto px-6 pb-28 pt-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[...row1.slice(0, 3), ...row2.slice(0, 3)].map((item, i) => (
-            <MarqueeCard key={i} item={item} data-oid="288lhia" />
+            <MarqueeCard key={i} item={item} />
           ))}
         </div>
       </div>

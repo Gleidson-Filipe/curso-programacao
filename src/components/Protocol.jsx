@@ -283,44 +283,23 @@ export default function Protocol() {
       id="protocolo"
       ref={container}
       className="pt-10 pb-20 px-0 w-full relative z-10 overflow-hidden"
-      data-oid="p2h9lpi"
+      style={{ scrollMarginTop: "90px" }}
     >
       {/* Header */}
-      <div
-        className="text-center mb-4 max-w-5xl mx-auto px-6"
-        data-oid="8leane."
-      >
-        <h2
-          className="protocol-header-anim text-3xl md:text-5xl font-display font-bold text-slate-100 mb-6"
-          data-oid="-kn4ffu"
-        >
+      <div className="text-center mb-4 max-w-5xl mx-auto px-6">
+        <h2 className="protocol-header-anim text-3xl md:text-5xl font-display font-bold text-slate-100 mb-6">
           Conteúdo do{" "}
-          <span className="text-primary italic font-serif" data-oid="gpv:h2c">
-            curso
-          </span>
+          <span className="text-primary italic font-serif">curso</span>
         </h2>
-        <p
-          className="protocol-header-anim text-slate-400 font-mono text-sm md:text-base flex items-center justify-center gap-3 flex-wrap"
-          data-oid="2aqkzx3"
-        >
-          <span data-oid="-b4l_z9">12 módulos</span>
-          <span className="text-white/20" data-oid="ld26:xk">
-            ·
-          </span>
-          <span data-oid="fz0njq:">{totalLessons}+ aulas</span>
-          <span className="text-white/20" data-oid="xxho941">
-            ·
-          </span>
-          <span data-oid="eomff7i">Atualizações constantes</span>
+        <p className="protocol-header-anim text-slate-400 font-mono text-sm md:text-base flex items-center justify-center gap-3 flex-wrap">
+          <span>12 módulos</span>
+          <span className="text-white/20">·</span>
+          <span>{totalLessons}+ aulas</span>
+          <span className="text-white/20">·</span>
+          <span>Atualizações constantes</span>
         </p>
-        <p
-          className="protocol-header-anim text-slate-600 text-sm mt-4 font-mono flex items-center justify-center gap-2"
-          data-oid="zfqny7e"
-        >
-          <span
-            className="material-symbols-outlined text-base text-primary/60"
-            data-oid="o4e1v5n"
-          >
+        <p className="protocol-header-anim text-slate-600 text-sm mt-4 font-mono flex items-center justify-center gap-2">
+          <span className="material-symbols-outlined text-base text-primary/60">
             swipe
           </span>
           Arraste para explorar os módulos
@@ -332,7 +311,6 @@ export default function Protocol() {
         ref={wheelRef}
         className="relative w-full cursor-grab active:cursor-grabbing select-none mx-auto"
         style={{ height: "580px" }}
-        data-oid=":67ayg:"
       >
         {modules.map((mod, i) => {
           const cardDeg = i * sliceAngle + wheelAngle;
@@ -388,7 +366,6 @@ export default function Protocol() {
                 pointerEvents: "none",
                 filter: dropShadow,
               }}
-              data-oid="s.0dvtw"
             >
               <div
                 className="w-full h-full rounded-[2rem] p-8 flex flex-col justify-between relative overflow-hidden border"
@@ -404,7 +381,6 @@ export default function Protocol() {
                       ? `0 0 18px rgba(201,168,76,${goldGlow}), 0 0 40px rgba(201,168,76,${goldGlow * 0.35}), inset 0 1px 0 rgba(201,168,76,${goldIntensity * 0.3})`
                       : `inset 0 1px 0 ${mod.accent}10`,
                 }}
-                data-oid="owtlrlx"
               >
                 {/* Directional edge shading overlay */}
                 {edgeOverlay > 0 && (
@@ -414,7 +390,6 @@ export default function Protocol() {
                       zIndex: 30,
                       background: `linear-gradient(${overlayDir}, rgba(4,4,12,${(edgeOverlay * 0.93).toFixed(2)}) 0%, rgba(4,4,12,${(edgeOverlay * 0.45).toFixed(2)}) 45%, transparent 80%)`,
                     }}
-                    data-oid="_w58lxv"
                   />
                 )}
 
@@ -422,70 +397,55 @@ export default function Protocol() {
                 <div
                   className="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-[60px] opacity-20"
                   style={{ background: mod.accent }}
-                  data-oid="zuzkj4y"
                 />
 
                 {/* Decorative dots */}
-                <div
-                  className="absolute top-6 right-6 opacity-15"
-                  data-oid="ng09063"
-                >
-                  <div className="grid grid-cols-3 gap-1.5" data-oid="_r6ttgi">
+                <div className="absolute top-6 right-6 opacity-15">
+                  <div className="grid grid-cols-3 gap-1.5">
                     {Array.from({ length: 9 }).map((_, dotIdx) => (
                       <div
                         key={dotIdx}
                         className="w-1 h-1 rounded-full bg-white"
-                        data-oid="3k-efgf"
                       />
                     ))}
                   </div>
                 </div>
 
                 {/* Top */}
-                <div className="relative z-10" data-oid="cq1yl_k">
+                <div className="relative z-10">
                   <div
                     className="font-mono text-[11px] uppercase tracking-[0.25em] mb-5 opacity-60"
                     style={{ color: mod.accent }}
-                    data-oid="xd55ad1"
                   >
                     Módulo {String(mod.id).padStart(2, "0")}
                   </div>
                   <span
                     className="material-symbols-outlined text-5xl mb-5 block"
                     style={{ color: mod.accent }}
-                    data-oid="v_jxfuv"
                   >
                     {mod.icon}
                   </span>
-                  <h3
-                    className="text-white font-bold text-2xl leading-tight tracking-tight"
-                    data-oid="dlmqn:y"
-                  >
+                  <h3 className="text-white font-bold text-2xl leading-tight tracking-tight">
                     {mod.title}
                   </h3>
                 </div>
 
                 {/* Bottom */}
-                <div className="relative z-10" data-oid="vf_we86">
-                  <p
-                    className="text-slate-400 text-sm leading-relaxed mb-5"
-                    data-oid="h12n3o7"
-                  >
+                <div className="relative z-10">
+                  <p className="text-slate-400 text-sm leading-relaxed mb-5">
                     {mod.desc}
                   </p>
                   <div
                     className="flex items-center justify-between"
                     style={{ pointerEvents: "auto" }}
-                    data-oid="j3rerzs"
                   >
                     <span
                       className="font-mono text-xs opacity-60"
                       style={{ color: mod.accent }}
-                      data-oid="8huz89f"
                     >
                       {mod.lessons} aulas
                     </span>
-                    <div className="flex items-center gap-3" data-oid="xwflqb7">
+                    <div className="flex items-center gap-3">
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
@@ -497,7 +457,6 @@ export default function Protocol() {
                           border: "1px solid rgba(255,255,255,0.06)",
                           imageRendering: "pixelated",
                         }}
-                        data-oid="d8psuw8"
                       >
                         <svg
                           width="14"
@@ -505,7 +464,6 @@ export default function Protocol() {
                           viewBox="0 0 14 14"
                           fill="none"
                           style={{ imageRendering: "pixelated" }}
-                          data-oid="yu5ce9q"
                         >
                           <rect
                             x="8"
@@ -513,7 +471,6 @@ export default function Protocol() {
                             width="2"
                             height="2"
                             fill="#C9A84C"
-                            data-oid="8wzgatg"
                           />
 
                           <rect
@@ -522,7 +479,6 @@ export default function Protocol() {
                             width="2"
                             height="2"
                             fill="#C9A84C"
-                            data-oid="sk64q_o"
                           />
 
                           <rect
@@ -531,7 +487,6 @@ export default function Protocol() {
                             width="2"
                             height="2"
                             fill="#C9A84C"
-                            data-oid="kqxz_fg"
                           />
 
                           <rect
@@ -540,7 +495,6 @@ export default function Protocol() {
                             width="2"
                             height="2"
                             fill="#C9A84C"
-                            data-oid="w8xtw76"
                           />
 
                           <rect
@@ -549,7 +503,6 @@ export default function Protocol() {
                             width="2"
                             height="2"
                             fill="#C9A84C"
-                            data-oid="77jg.n:"
                           />
 
                           <rect
@@ -558,7 +511,6 @@ export default function Protocol() {
                             width="2"
                             height="2"
                             fill="#C9A84C"
-                            data-oid="2gqh6ua"
                           />
 
                           <rect
@@ -567,7 +519,6 @@ export default function Protocol() {
                             width="2"
                             height="2"
                             fill="#C9A84C"
-                            data-oid=".v566p9"
                           />
                         </svg>
                       </button>
@@ -582,7 +533,6 @@ export default function Protocol() {
                           border: "1px solid rgba(255,255,255,0.06)",
                           imageRendering: "pixelated",
                         }}
-                        data-oid="3-9rgcs"
                       >
                         <svg
                           width="14"
@@ -590,7 +540,6 @@ export default function Protocol() {
                           viewBox="0 0 14 14"
                           fill="none"
                           style={{ imageRendering: "pixelated" }}
-                          data-oid="e.s3qj:"
                         >
                           <rect
                             x="4"
@@ -598,7 +547,6 @@ export default function Protocol() {
                             width="2"
                             height="2"
                             fill="#C9A84C"
-                            data-oid="ik.60ax"
                           />
 
                           <rect
@@ -607,7 +555,6 @@ export default function Protocol() {
                             width="2"
                             height="2"
                             fill="#C9A84C"
-                            data-oid="069dray"
                           />
 
                           <rect
@@ -616,7 +563,6 @@ export default function Protocol() {
                             width="2"
                             height="2"
                             fill="#C9A84C"
-                            data-oid="jy9:-8d"
                           />
 
                           <rect
@@ -625,7 +571,6 @@ export default function Protocol() {
                             width="2"
                             height="2"
                             fill="#C9A84C"
-                            data-oid="53iy3bq"
                           />
 
                           <rect
@@ -634,7 +579,6 @@ export default function Protocol() {
                             width="2"
                             height="2"
                             fill="#C9A84C"
-                            data-oid=".9ic7bq"
                           />
 
                           <rect
@@ -643,7 +587,6 @@ export default function Protocol() {
                             width="2"
                             height="2"
                             fill="#C9A84C"
-                            data-oid="sq4.np9"
                           />
 
                           <rect
@@ -652,7 +595,6 @@ export default function Protocol() {
                             width="2"
                             height="2"
                             fill="#C9A84C"
-                            data-oid="w7m-ngw"
                           />
                         </svg>
                       </button>
@@ -671,7 +613,6 @@ export default function Protocol() {
             background:
               "linear-gradient(to right, var(--color-background) 0%, transparent 100%)",
           }}
-          data-oid="388qnul"
         />
 
         {/* Edge fade — right */}
@@ -681,7 +622,6 @@ export default function Protocol() {
             background:
               "linear-gradient(to left, var(--color-background) 0%, transparent 100%)",
           }}
-          data-oid="iw-py-_"
         />
       </div>
 
@@ -693,7 +633,6 @@ export default function Protocol() {
           background:
             "linear-gradient(to bottom, transparent 0%, #0D0D12 100%)",
         }}
-        data-oid=".7:t8zk"
       />
     </section>
   );

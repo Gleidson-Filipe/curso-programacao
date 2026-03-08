@@ -92,99 +92,75 @@ export default function Features() {
       ref={container}
       className="w-full z-10 relative"
       style={{ background: "#0D0D12" }}
-      data-oid="po5qmgw"
     >
-      <div className="py-32 px-6 max-w-7xl mx-auto" data-oid="o0rj_qq">
+      <div className="py-32 px-6 max-w-7xl mx-auto">
         {/* Header — largura total */}
-        <div className="mb-14" data-oid="mk48yej">
-          <div
-            className="inline-flex items-center gap-2 mb-6 border border-primary/20 bg-primary/5 rounded-full px-4 py-1.5 font-mono text-xs text-primary font-bold tracking-widest uppercase"
-            data-oid="z:e0spl"
-          >
-            <span
-              className="material-symbols-outlined text-sm"
-              data-oid="_mkv9qi"
-            >
+        <div className="mb-14">
+          <div className="inline-flex items-center gap-2 mb-6 border border-primary/20 bg-primary/5 rounded-full px-4 py-1.5 font-mono text-xs text-primary font-bold tracking-widest uppercase">
+            <span className="material-symbols-outlined text-sm">
               integration_instructions
             </span>
             O Currículo
           </div>
-          <h2
-            className="text-3xl md:text-5xl font-display font-bold text-slate-100 leading-tight"
-            data-oid="20gxkiq"
-          >
+          <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-100 leading-tight">
             O que você vai{" "}
-            <span
-              className="text-primary italic font-serif tracking-wide"
-              data-oid="skyvrgt"
-            >
+            <span className="text-primary italic font-serif tracking-wide">
               dominar
             </span>
           </h2>
         </div>
 
-        <div
-          className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start"
-          data-oid="401n5ug"
-        >
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start">
           {/* Left Column: feature items */}
-          <div className="flex flex-col gap-4" data-oid="h2jbu7v">
-              {learnings.map((item, i) => (
+          <div className="flex flex-col gap-4">
+            {learnings.map((item, i) => (
+              <div
+                key={i}
+                className="feature-item flex gap-5 group rounded-2xl p-4 transition-all duration-300"
+                style={{
+                  background: "rgba(255,255,255,0.02)",
+                  border: `1px solid ${item.accent}18`,
+                }}
+              >
+                {/* Accent icon box */}
                 <div
-                  key={i}
-                  className="feature-item flex gap-5 group rounded-2xl p-4 transition-all duration-300"
+                  className="shrink-0 size-12 rounded-xl flex items-center justify-center transition-all duration-300"
                   style={{
-                    background: "rgba(255,255,255,0.02)",
-                    border: `1px solid ${item.accent}18`,
+                    background: `${item.accent}14`,
+                    border: `1px solid ${item.accent}30`,
+                    boxShadow: `0 0 16px ${item.accent}18`,
                   }}
-                  data-oid="09uryiv"
                 >
-                  {/* Accent icon box */}
-                  <div
-                    className="shrink-0 size-12 rounded-xl flex items-center justify-center transition-all duration-300"
-                    style={{
-                      background: `${item.accent}14`,
-                      border: `1px solid ${item.accent}30`,
-                      boxShadow: `0 0 16px ${item.accent}18`,
-                    }}
-                    data-oid="bsox43o"
+                  <span
+                    className="material-symbols-outlined text-[22px]"
+                    style={{ color: item.accent }}
+                  >
+                    {item.icon}
+                  </span>
+                </div>
+                <div className="pt-0.5">
+                  <h3
+                    className="text-base md:text-lg font-bold font-mono tracking-tight mb-1.5 flex items-center gap-2.5 transition-colors duration-300"
+                    style={{ color: "rgb(226 232 240)" }}
                   >
                     <span
-                      className="material-symbols-outlined text-[22px]"
+                      className="text-xs font-normal opacity-50"
                       style={{ color: item.accent }}
-                      data-oid=".x4ob:6"
                     >
-                      {item.icon}
+                      {String(i + 1).padStart(2, "0")}.
                     </span>
-                  </div>
-                  <div className="pt-0.5" data-oid="is5veu5">
-                    <h3
-                      className="text-base md:text-lg font-bold font-mono tracking-tight mb-1.5 flex items-center gap-2.5 transition-colors duration-300"
-                      style={{ color: "rgb(226 232 240)" }}
-                      data-oid="j2ougr0"
-                    >
-                      <span
-                        className="text-xs font-normal opacity-50"
-                        style={{ color: item.accent }}
-                        data-oid="9fhk332"
-                      >
-                        {String(i + 1).padStart(2, "0")}.
-                      </span>
-                      {item.title}
-                    </h3>
-                    <p
-                      className="text-slate-500 text-sm leading-relaxed"
-                      data-oid="1qzp_9:"
-                    >
-                      {item.desc}
-                    </p>
-                  </div>
+                    {item.title}
+                  </h3>
+                  <p className="text-slate-500 text-sm leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
-              ))}
+              </div>
+            ))}
           </div>
 
           {/* Right Column: Who is it for */}
-          <div className="flex flex-col gap-4" data-oid=":6lq_f2">
+          <div className="flex flex-col gap-4">
             <div
               className="p-8 md:p-12 rounded-2xl relative overflow-hidden"
               style={{
@@ -192,7 +168,6 @@ export default function Features() {
                 border: "1px solid rgba(201,167,74,0.12)",
                 boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
               }}
-              data-oid="jzo1bfe"
             >
               <div
                 className="absolute top-0 right-0 w-80 h-80 rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none"
@@ -201,39 +176,25 @@ export default function Features() {
                     "radial-gradient(circle, rgba(201,167,74,0.07) 0%, transparent 70%)",
                   filter: "blur(40px)",
                 }}
-                data-oid="iq1haz9"
               />
 
-              <div
-                className="flex items-center gap-3 mb-8"
-                data-oid="feat-label"
-              >
-                <span
-                  className="font-mono text-[10px] uppercase tracking-[0.35em] text-primary/50"
-                  data-oid="lf:11qs"
-                >
+              <div className="flex items-center gap-3 mb-8">
+                <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-primary/50">
                   {"// target.audience"}
                 </span>
-                <div className="h-px w-10 bg-primary/20" data-oid="ekyf_5f" />
+                <div className="h-px w-10 bg-primary/20" />
               </div>
 
-              <h3
-                className="text-2xl md:text-3xl font-display font-bold text-slate-100 mb-10"
-                data-oid="qylfd7d"
-              >
+              <h3 className="text-2xl md:text-3xl font-display font-bold text-slate-100 mb-10">
                 Para quem é a CodeStart?
               </h3>
 
-              <div
-                className="flex flex-col gap-7 relative z-10"
-                data-oid="xjon7gq"
-              >
+              <div className="flex flex-col gap-7 relative z-10">
                 {audiences.map((aud, i) => (
                   <div
                     key={i}
                     className="audience-item pl-5 relative"
                     style={{ borderLeft: `2px solid ${aud.accent}40` }}
-                    data-oid="g.5x.5j"
                   >
                     {/* Accent dot */}
                     <div
@@ -242,19 +203,12 @@ export default function Features() {
                         background: aud.accent,
                         boxShadow: `0 0 8px ${aud.accent}80`,
                       }}
-                      data-oid="c27ecg:"
                     />
 
-                    <h4
-                      className="text-slate-200 text-base font-bold mb-2 tracking-tight"
-                      data-oid="jqktb-4"
-                    >
+                    <h4 className="text-slate-200 text-base font-bold mb-2 tracking-tight">
                       {aud.type}
                     </h4>
-                    <p
-                      className="text-slate-500 text-sm leading-relaxed"
-                      data-oid="ahwy1jv"
-                    >
+                    <p className="text-slate-500 text-sm leading-relaxed">
                       {aud.desc}
                     </p>
                   </div>
@@ -269,40 +223,30 @@ export default function Features() {
                 background: "linear-gradient(150deg, #10101e 0%, #0a0a12 100%)",
                 border: "1px solid rgba(255,255,255,0.06)",
               }}
-              data-oid="xoae0rn"
             >
-              <div
-                className="flex gap-4 items-start relative z-10"
-                data-oid="hj_-w_z"
-              >
+              <div className="flex gap-4 items-start relative z-10">
                 <div
                   className="shrink-0 size-9 rounded-lg flex items-center justify-center"
                   style={{
                     background: "rgba(239,68,68,0.10)",
                     border: "1px solid rgba(239,68,68,0.18)",
                   }}
-                  data-oid="l3_b90k"
                 >
                   <span
                     className="material-symbols-outlined text-base"
                     style={{ color: "rgba(239,68,68,0.75)" }}
-                    data-oid="-1d8_8q"
                   >
                     close
                   </span>
                 </div>
-                <div data-oid="-jl0apo">
+                <div>
                   <h4
                     className="text-sm font-bold mb-1.5 tracking-tight"
                     style={{ color: "rgba(239,68,68,0.75)" }}
-                    data-oid="-2g7sbm"
                   >
                     Para quem NÃO é
                   </h4>
-                  <p
-                    className="text-slate-500 text-sm leading-relaxed"
-                    data-oid="74j1iii"
-                  >
+                  <p className="text-slate-500 text-sm leading-relaxed">
                     Pessoas buscando atalhos, fórmulas mágicas ou certificados
                     vazios que não se sustentam em entrevistas técnicas.
                   </p>

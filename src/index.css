@@ -6,7 +6,8 @@
 @tailwind utilities;
 
 @layer base {
-  body {
+  html, body {
+    overflow-x: hidden;
     background-color: theme('colors.background-dark');
     color: theme('colors.slate.100');
   }
@@ -150,4 +151,14 @@
 
 .link-premium:hover {
   transform: translateY(-1px);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }
