@@ -6,7 +6,9 @@
 @tailwind utilities;
 
 @layer base {
-  html, body {
+
+  html,
+  body {
     overflow-x: hidden;
     background-color: theme('colors.background-dark');
     color: theme('colors.slate.100');
@@ -138,10 +140,13 @@
   justify-content: center;
   cursor: pointer;
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -webkit-tap-highlight-color: transparent;
 }
 
-.btn-magnetic:hover {
-  transform: scale(1.03);
+@media (hover: hover) and (pointer: fine) {
+  .btn-magnetic:hover {
+    transform: scale(1.03);
+  }
 }
 
 .link-premium {
@@ -154,11 +159,42 @@
 }
 
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes marquee-reverse {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Mobile navbar: more transparent glass + gradient bottom border */
+@media (max-width: 767px) {
+  .navbar .glass {
+    background: rgba(13, 13, 18, 0.60) !important;
+    backdrop-filter: blur(24px) !important;
+    border-bottom: none !important;
+  }
+}
+
+/* Hover de cor apenas em dispositivos com mouse real */
+@media (hover: hover) and (pointer: fine) {
+  .btn-nav-hover:hover {
+    background-color: #c9a74a;
+    color: #09090D;
+  }
+
+  .btn-cta-hover:hover {
+    background-color: rgba(201, 167, 74, 0.9);
+  }
 }

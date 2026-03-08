@@ -15,7 +15,7 @@ export default function Footer() {
           </div>
 
           {/* Copyright */}
-          <p className="text-[10px] text-slate-600 font-mono tracking-widest">
+          <p className="text-[10px] text-slate-600 font-mono tracking-widest text-center">
             © 2026 CodeStart Academy. Todos os direitos reservados.
           </p>
 

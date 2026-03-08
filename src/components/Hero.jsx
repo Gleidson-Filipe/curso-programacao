@@ -26,7 +26,7 @@ export default function Hero() {
   return (
     <section
       ref={container}
-      className="relative pt-32 md:pt-48 pb-20 md:pb-32 px-6 hero-gradient flex items-center w-full z-10 overflow-hidden"
+      className="relative pt-20 md:pt-48 pb-20 md:pb-32 px-6 hero-gradient flex items-center w-full z-10 overflow-hidden"
     >
       {/* Background glows */}
       <div className="absolute inset-0 pointer-events-none">
@@ -111,7 +111,7 @@ export default function Hero() {
 
           {/* Botão CTA */}
           <div className="hero-anim w-full sm:w-auto flex flex-col items-start gap-2 mb-6">
-            <button className="btn-magnetic w-full sm:w-auto bg-primary text-background-dark px-10 py-4 rounded-md text-base font-mono font-bold hover:bg-primary/90 transition-all shadow-[0_0_30px_rgba(201,167,74,0.3)]">
+            <button className="w-full sm:w-auto px-10 py-4 rounded-md text-base font-mono font-bold transition-all duration-200 hover:brightness-110 active:scale-[0.98]" style={{ background: "#C9A84C", color: "#09090f", boxShadow: "0 0 30px rgba(201,167,74,0.3)", WebkitTapHighlightColor: "transparent" }}>
               Garantir minha vaga — R$49,90/mês
             </button>
           </div>
