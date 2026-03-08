@@ -232,7 +232,7 @@ export default function Testimonials() {
       id="depoimentos"
       ref={containerRef}
       className="relative w-full z-10 overflow-hidden"
-      style={{ background: "#0D0D12", scrollMarginTop: "90px" }}
+      style={{ background: "#0D0D12", scrollMarginTop: "-60px" }}
     >
       {/* Faint radial glow backdrop */}
       <div

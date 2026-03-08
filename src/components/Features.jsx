@@ -91,7 +91,7 @@ export default function Features() {
       id="metodo"
       ref={container}
       className="w-full z-10 relative"
-      style={{ background: "#0D0D12" }}
+      style={{ background: "#0D0D12", scrollMarginTop: "-30px" }}
     >
       <div className="py-32 px-6 max-w-7xl mx-auto">
         {/* Header — largura total */}
