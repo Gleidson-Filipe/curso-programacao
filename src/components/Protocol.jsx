@@ -109,8 +109,13 @@ export default function Protocol() {
   // Use ref as source of truth for angle, state only for re-renders
   const angleRef = useRef(0);
   const [, forceRender] = useState(0);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth < 1024 : false
+  );
   const isDragging = useRef(false);
   const startX = useRef(0);
+  const startY = useRef(0);
+  const gestureDir = useRef(null);
   const startAngle = useRef(0);
   const velocity = useRef(0);
   const lastX = useRef(0);
@@ -118,34 +123,24 @@ export default function Protocol() {
   const animFrame = useRef(null);
   const snapTween = useRef(null);
 
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const totalLessons = modules.reduce((acc, m) => acc + m.lessons, 0);
   const sliceAngle = 360 / modules.length; // 30°
-  const radius = 700;
+  const radius = isMobile ? 570 : 700;
+  const CARD_W = isMobile ? 290 : 340;
+  const CARD_H = isMobile ? 410 : 480;
+  const CUTOFF = isMobile ? 35 : 65;
+  const CONTAINER_H = isMobile ? 480 : 580;
 
   const updateAngle = useCallback((newAngle) => {
     angleRef.current = newAngle;
     forceRender((n) => n + 1);
   }, []);
-
-  // Snap to nearest card
-  const snapToNearest = useCallback(() => {
-    const current = angleRef.current;
-    const nearest = Math.round(current / sliceAngle) * sliceAngle;
-
-    // Kill any existing snap tween
-    if (snapTween.current) snapTween.current.kill();
-
-    const obj = { val: current };
-    snapTween.current = gsap.to(obj, {
-      val: nearest,
-      duration: 0.45,
-      ease: "power2.out",
-      onUpdate: () => {
-        angleRef.current = obj.val;
-        forceRender((n) => n + 1);
-      },
-    });
-  }, [sliceAngle]);
 
   // Navigate one card in direction (-1 = left, 1 = right)
   const navigateWheel = useCallback(
@@ -171,38 +166,52 @@ export default function Protocol() {
     [sliceAngle],
   );
 
-  // Momentum loop
-  const animateMomentum = useCallback(() => {
-    if (Math.abs(velocity.current) < 0.12) {
-      velocity.current = 0;
-      snapToNearest();
-      return;
-    }
-    velocity.current *= 0.94;
-    angleRef.current += velocity.current;
-    forceRender((n) => n + 1);
-    animFrame.current = requestAnimationFrame(animateMomentum);
-  }, [snapToNearest]);
 
   const handlePointerDown = useCallback((e) => {
-    e.preventDefault();
-    // Stop everything
+    if (e.type === "mousedown") e.preventDefault();
     if (animFrame.current) cancelAnimationFrame(animFrame.current);
     if (snapTween.current) snapTween.current.kill();
 
     isDragging.current = true;
-    startX.current = e.clientX || e.touches?.[0]?.clientX || 0;
+    gestureDir.current = null;
+    const clientX = e.clientX || e.touches?.[0]?.clientX || 0;
+    const clientY = e.clientY || e.touches?.[0]?.clientY || 0;
+    startX.current = clientX;
+    startY.current = clientY;
     startAngle.current = angleRef.current;
-    lastX.current = startX.current;
+    lastX.current = clientX;
     lastTime.current = Date.now();
     velocity.current = 0;
-    document.body.style.cursor = "grabbing";
-    document.body.style.userSelect = "none";
+    if (e.type === "mousedown") {
+      document.body.style.cursor = "grabbing";
+      document.body.style.userSelect = "none";
+    }
   }, []);
 
   const handlePointerMove = useCallback((e) => {
     if (!isDragging.current) return;
     const clientX = e.clientX || e.touches?.[0]?.clientX || 0;
+    const clientY = e.clientY || e.touches?.[0]?.clientY || 0;
+
+    // Detect gesture direction on first meaningful movement
+    if (gestureDir.current === null) {
+      const dx = Math.abs(clientX - startX.current);
+      const dy = Math.abs(clientY - startY.current);
+      if (dx < 6 && dy < 6) return;
+      gestureDir.current = dx >= dy ? "h" : "v";
+    }
+
+    if (gestureDir.current === "v") {
+      // Vertical scroll — release and let the page scroll naturally
+      isDragging.current = false;
+      document.body.style.cursor = "";
+      document.body.style.userSelect = "";
+      return;
+    }
+
+    // Horizontal drag — prevent page scroll
+    if (e.cancelable) e.preventDefault();
+
     const delta = clientX - startX.current;
     const sensitivity = 0.18;
     const newAngle = startAngle.current + delta * sensitivity;
@@ -225,23 +234,39 @@ export default function Protocol() {
     isDragging.current = false;
     document.body.style.cursor = "";
     document.body.style.userSelect = "";
+    if (animFrame.current) cancelAnimationFrame(animFrame.current);
 
-    // If barely moved, snap immediately
-    if (Math.abs(velocity.current) < 0.25) {
-      snapToNearest();
-    } else {
-      animFrame.current = requestAnimationFrame(animateMomentum);
-    }
-  }, [animateMomentum, snapToNearest]);
+    // Projeta o ângulo final com base na velocidade (sem loop de momentum)
+    // Soma da série geométrica com decay 0.91: distância total = v / (1 - 0.91)
+    const projectedDist = velocity.current / (1 - 0.91);
+    velocity.current = 0;
+
+    // Limita a no máximo 2 cards por swipe para evitar pular demais
+    const maxDist = sliceAngle * 2;
+    const clampedDist = Math.max(-maxDist, Math.min(maxDist, projectedDist));
+    const target = Math.round((angleRef.current + clampedDist) / sliceAngle) * sliceAngle;
+
+    if (snapTween.current) snapTween.current.kill();
+    const obj = { val: angleRef.current };
+    snapTween.current = gsap.to(obj, {
+      val: target,
+      duration: 0.55,
+      ease: "power3.out",
+      onUpdate: () => {
+        angleRef.current = obj.val;
+        forceRender((n) => n + 1);
+      },
+    });
+  }, [sliceAngle]);
 
   useEffect(() => {
     const el = wheelRef.current;
     if (!el) return;
 
     el.addEventListener("mousedown", handlePointerDown);
-    el.addEventListener("touchstart", handlePointerDown, { passive: false });
+    el.addEventListener("touchstart", handlePointerDown, { passive: true });
     window.addEventListener("mousemove", handlePointerMove);
-    window.addEventListener("touchmove", handlePointerMove, { passive: true });
+    window.addEventListener("touchmove", handlePointerMove, { passive: false });
     window.addEventListener("mouseup", handlePointerUp);
     window.addEventListener("touchend", handlePointerUp);
 
@@ -310,7 +335,7 @@ export default function Protocol() {
       <div
         ref={wheelRef}
         className="relative w-full cursor-grab active:cursor-grabbing select-none mx-auto"
-        style={{ height: "580px" }}
+        style={{ height: `${CONTAINER_H}px` }}
       >
         {modules.map((mod, i) => {
           const cardDeg = i * sliceAngle + wheelAngle;
@@ -319,15 +344,18 @@ export default function Protocol() {
 
           const x = Math.sin(rad) * radius;
           const y = -Math.cos(rad) * radius;
-          const tilt = normDeg;
+          // No mobile, reduz o arco vertical pra os cards laterais não ficarem baixos
+          const yPos = isMobile ? (y + radius) * 0.45 : y + radius;
+          const tilt = isMobile ? normDeg * 0.28 : normDeg;
 
           const absNorm = Math.abs(normDeg);
-          const scale = Math.max(0.52, 1.08 - absNorm / 95);
-          // Cards stay opaque; only quick fade at the very edge before cutoff
-          const opacity =
-            absNorm > 52
-              ? Math.max(0, 1 - (absNorm - 52) / 13)
-              : 1 - absNorm / 220;
+          const opacity = isMobile
+            ? absNorm > 32
+              ? Math.max(0, 1 - (absNorm - 32) / 10)
+              : 1 - absNorm / 220
+            : absNorm > 52
+            ? Math.max(0, 1 - (absNorm - 52) / 13)
+            : 1 - absNorm / 220;
           const zIndex = Math.round(100 - absNorm);
 
           // Golden border intensity: full at center, fading by 25°
@@ -347,7 +375,7 @@ export default function Protocol() {
               ? `drop-shadow(0 8px 18px rgba(0,0,0,0.45))`
               : `drop-shadow(0 6px 14px rgba(0,0,0,0.28))`;
 
-          if (absNorm > 65) return null;
+          if (absNorm > CUTOFF) return null;
 
           return (
             <div
@@ -356,15 +384,16 @@ export default function Protocol() {
               style={{
                 left: "50%",
                 top: "100%",
-                width: "340px",
-                height: "480px",
-                transform: `translate(calc(-50% + ${x}px), calc(-100% + ${y + radius}px)) rotate(${tilt}deg) translateZ(${zIndex}px)`,
+                width: `${CARD_W}px`,
+                height: `${CARD_H}px`,
+                transform: `translate(calc(-50% + ${x}px), calc(-100% + ${yPos}px)) rotate(${tilt}deg) translateZ(${zIndex}px)`,
                 transformOrigin: "center center",
                 opacity,
                 zIndex,
                 isolation: "isolate",
                 pointerEvents: "none",
                 filter: dropShadow,
+                willChange: "transform, opacity",
               }}
             >
               <div
@@ -608,8 +637,9 @@ export default function Protocol() {
 
         {/* Edge fade — left */}
         <div
-          className="absolute left-0 top-0 bottom-0 w-[25%] z-[200] pointer-events-none"
+          className="absolute left-0 top-0 bottom-0 z-[200] pointer-events-none"
           style={{
+            width: isMobile ? "13%" : "25%",
             background:
               "linear-gradient(to right, var(--color-background) 0%, transparent 100%)",
           }}
@@ -617,8 +647,9 @@ export default function Protocol() {
 
         {/* Edge fade — right */}
         <div
-          className="absolute right-0 top-0 bottom-0 w-[25%] z-[200] pointer-events-none"
+          className="absolute right-0 top-0 bottom-0 z-[200] pointer-events-none"
           style={{
+            width: isMobile ? "13%" : "25%",
             background:
               "linear-gradient(to left, var(--color-background) 0%, transparent 100%)",
           }}

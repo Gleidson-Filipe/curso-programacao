@@ -93,7 +93,7 @@ export default function Features() {
       className="w-full z-10 relative"
       style={{ background: "#0D0D12", scrollMarginTop: "-30px" }}
     >
-      <div className="py-32 px-6 max-w-7xl mx-auto">
+      <div className="py-16 md:py-32 px-6 max-w-7xl mx-auto">
         {/* Header — largura total */}
         <div className="mb-14">
           <div className="inline-flex items-center gap-2 mb-6 border border-primary/20 bg-primary/5 rounded-full px-4 py-1.5 font-mono text-xs text-primary font-bold tracking-widest uppercase">

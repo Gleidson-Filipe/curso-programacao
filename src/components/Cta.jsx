@@ -84,7 +84,7 @@ export default function Cta() {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-32">
+      <div className="max-w-7xl mx-auto px-6 py-16 md:py-32">
         <div className="grid md:grid-cols-[1fr_440px] gap-20 items-center">
           {/* ── LEFT ── */}
           <div className="cta-left flex flex-col">

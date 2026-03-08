@@ -48,11 +48,11 @@ export default function Hero() {
           }}
         />
       </div>
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-        <div className="flex flex-col items-start text-left z-10">
+      <div className="w-full min-w-0 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className="flex flex-col items-start text-left z-10 w-full min-w-0">
           {/* Badge com ping animado */}
           <div
-            className="hero-anim inline-flex items-center gap-2.5 mb-7 rounded-full px-4 py-1.5 font-mono text-xs text-primary font-bold tracking-widest uppercase"
+            className="hero-anim inline-flex items-center gap-2.5 mb-7 rounded-full px-4 py-1.5 font-mono text-xs text-primary font-bold tracking-wider uppercase max-w-full"
             style={{
               background: "rgba(201,167,74,0.07)",
               border: "1px solid rgba(201,167,74,0.22)",
@@ -160,21 +160,21 @@ export default function Hero() {
               <div className="font-mono text-xs text-slate-500">future.ts</div>
               <div className="w-12"></div>
             </div>
-            <div className="p-6 bg-[#0D0D12] rounded-b-lg font-mono text-xs sm:text-sm leading-[1.7] overflow-hidden relative">
+            <div className="p-6 bg-[#0D0D12] rounded-b-lg font-mono text-xs sm:text-sm leading-[1.7] overflow-x-auto relative">
               {[
                 <><span className="text-[#FF7B72]">import</span> {"{ "}<span className="text-[#D2A8FF]">Future</span>{" }"} <span className="text-[#FF7B72]">from</span> <span className="text-[#A5D6FF]">'@codestart/core'</span>;</>,
                 <><span className="text-[#FF7B72]">const</span> <span className="text-[#79C0FF]">student</span> = <span className="text-[#FF7B72]">new</span> <span className="text-[#D2A8FF]">Developer</span>();</>,
                 <>&nbsp;</>,
                 <><span className="text-[#FF7B72]">await</span> student.<span className="text-[#D2A8FF]">upgrade</span>{"({"}</>,
-                <><span className="pl-6 text-slate-400 block">&nbsp;&nbsp;skills: [<span className="text-[#A5D6FF]">'React'</span>, <span className="text-[#A5D6FF]">'Node'</span>, <span className="text-[#A5D6FF]">'System Design'</span>],</span></>,
-                <><span className="pl-6 text-slate-400 block">&nbsp;&nbsp;mindset: <span className="text-[#79C0FF]">Elite</span>,</span></>,
-                <><span className="pl-6 text-slate-400 block">&nbsp;&nbsp;salary: <span className="text-[#A5D6FF]">'USD'</span></span></>,
+                <><span className="text-slate-400">&nbsp;&nbsp;skills: [<span className="text-[#A5D6FF]">'React'</span>, <span className="text-[#A5D6FF]">'Node'</span>, <span className="text-[#A5D6FF]">'System Design'</span>],</span></>,
+                <><span className="text-slate-400">&nbsp;&nbsp;mindset: <span className="text-[#79C0FF]">Elite</span>,</span></>,
+                <><span className="text-slate-400">&nbsp;&nbsp;salary: <span className="text-[#A5D6FF]">'USD'</span></span></>,
                 <>{"});"}</>,
                 <><span className="blinking-cursor inline-block w-2 h-[1em] bg-primary align-middle translate-y-0.5"></span></>,
               ].map((line, i) => (
-                <div key={i} className="flex">
+                <div key={i} className="flex whitespace-nowrap">
                   <span className="text-slate-600 select-none w-6 shrink-0 text-right pr-4 border-r border-white/5 mr-4">{i + 1}</span>
-                  <span className="text-slate-300 flex-1">{line}</span>
+                  <span className="text-slate-300">{line}</span>
                 </div>
               ))}
             </div>

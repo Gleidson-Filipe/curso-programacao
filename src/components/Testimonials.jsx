@@ -244,7 +244,7 @@ export default function Testimonials() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 pt-28 pb-8">
+      <div className="max-w-7xl mx-auto px-6 pt-16 md:pt-28 pb-8">
         {/* Label */}
         <div className="testimonials-fade flex items-center gap-3 mb-7">
           <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-primary/50">
@@ -320,7 +320,7 @@ export default function Testimonials() {
 
           <div className="grid md:grid-cols-[1fr_380px]">
             {/* LEFT — Quote */}
-            <div className="p-10 md:p-14 flex flex-col justify-between border-r border-white/[0.06]">
+            <div className="p-6 md:p-10 lg:p-14 flex flex-col justify-between border-b md:border-b-0 md:border-r border-white/[0.06]">
               {/* Opening quote mark */}
               <div>
                 <span
@@ -369,7 +369,7 @@ export default function Testimonials() {
             </div>
 
             {/* RIGHT — Identity + Transformation */}
-            <div className="p-10 md:p-14 flex flex-col justify-between gap-10">
+            <div className="p-6 md:p-10 lg:p-14 flex flex-col justify-between gap-10">
               {/* Transformation widget */}
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-slate-600 mb-6">
