@@ -166,7 +166,7 @@ export default function Features() {
               style={{
                 background: "linear-gradient(150deg, #10101e 0%, #0a0a12 100%)",
                 border: "1px solid rgba(201,167,74,0.12)",
-                boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+                boxShadow: "0 2px 12px rgba(0,0,0,0.15)",
               }}
             >
               <div
@@ -222,6 +222,7 @@ export default function Features() {
               style={{
                 background: "linear-gradient(150deg, #10101e 0%, #0a0a12 100%)",
                 border: "1px solid rgba(255,255,255,0.06)",
+                boxShadow: "0 2px 12px rgba(0,0,0,0.15)",
               }}
             >
               <div className="flex gap-4 items-start relative z-10">

@@ -147,8 +147,7 @@ export default function Hero() {
             className="glass rounded-xl p-2 shadow-2xl relative overflow-hidden group"
             style={{
               border: "1px solid rgba(201,167,74,0.18)",
-              boxShadow:
-                "0 0 40px rgba(201,167,74,0.07), 0 24px 64px rgba(0,0,0,0.5)",
+              boxShadow: "0 2px 12px rgba(0,0,0,0.15)",
             }}
           >
             <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
@@ -186,7 +185,7 @@ export default function Hero() {
             style={{
               background: "linear-gradient(135deg, #10101e 0%, #0a0a12 100%)",
               border: "1px solid rgba(201,167,74,0.14)",
-              boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
+              boxShadow: "0 2px 12px rgba(0,0,0,0.15)",
             }}
           >
             <div

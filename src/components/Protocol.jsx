@@ -344,8 +344,8 @@ export default function Protocol() {
           // filter: drop-shadow follows the rotated card shape (no bounding-box halo artifacts)
           const dropShadow =
             goldIntensity > 0.05
-              ? `drop-shadow(0 6px 16px rgba(0,0,0,0.55)) drop-shadow(0 22px 44px rgba(0,0,0,0.3))`
-              : `drop-shadow(0 4px 12px rgba(0,0,0,0.45)) drop-shadow(0 14px 32px rgba(0,0,0,0.22))`;
+              ? `drop-shadow(0 8px 18px rgba(0,0,0,0.45))`
+              : `drop-shadow(0 6px 14px rgba(0,0,0,0.28))`;
 
           if (absNorm > 65) return null;
 
@@ -378,7 +378,7 @@ export default function Protocol() {
                       : `${mod.accent}22`,
                   boxShadow:
                     goldIntensity > 0.05
-                      ? `0 0 18px rgba(201,168,76,${goldGlow}), 0 0 40px rgba(201,168,76,${goldGlow * 0.35}), inset 0 1px 0 rgba(201,168,76,${goldIntensity * 0.3})`
+                      ? `0 4px 18px rgba(201,168,76,${(goldGlow * 0.45).toFixed(2)}), inset 0 1px 0 rgba(201,168,76,${(goldIntensity * 0.25).toFixed(2)})`
                       : `inset 0 1px 0 ${mod.accent}10`,
                 }}
               >

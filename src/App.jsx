@@ -60,11 +60,11 @@ export default function App() {
   return (
     <div className="relative" data-oid="h-f94ys">
       <div
-        className="fixed inset-0 pointer-events-none bg-grid-pattern bg-grid opacity-50 z-[-1]"
+        className="fixed inset-0 pointer-events-none bg-grid-pattern bg-grid opacity-50 z-0"
         data-oid="gjybqeh"
       ></div>
 
-      <div className="relative flex w-full flex-col" data-oid="bh9oebq">
+      <div className="relative flex w-full flex-col z-10" data-oid="bh9oebq">
         <Navbar data-oid="d1mn46r" />
         <main className="flex flex-col" data-oid="88c7nog">
           <Hero data-oid="v1y3m6q" />
